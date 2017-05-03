@@ -18,12 +18,12 @@ public class BookDtoBuilder implements BookExporter {
 
 	@Override
 	public void exportId(UUID id) {
-		bookDto.setId(id.toString());
+		bookDto.setId(id);
 	}
 
 	@Override
 	public void exportStatus(BookStatus status) {
-		bookDto.setStatus(status.toString());
+		bookDto.setStatus(status);
 	}
 
 	@Override

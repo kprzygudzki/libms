@@ -24,8 +24,8 @@ public class StandardBookManagementProcess implements BookManagementProcess {
 	}
 
 	@Override
-	public void remove(String bookId) {
-		Book book = bookRepository.get(UUID.fromString(bookId));
+	public void remove(UUID bookId) {
+		Book book = bookRepository.get(bookId);
 		book.remove();
 	}
 
