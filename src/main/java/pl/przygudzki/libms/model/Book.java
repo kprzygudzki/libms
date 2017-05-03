@@ -1,8 +1,10 @@
 package pl.przygudzki.libms.model;
 
-import javax.persistence.*;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
-import java.util.UUID;
 
 import static pl.przygudzki.libms.model.BookStatus.AVAILABLE;
 import static pl.przygudzki.libms.model.BookStatus.REMOVED;
@@ -10,9 +12,8 @@ import static pl.przygudzki.libms.model.BookStatus.REMOVED;
 @Entity
 public class Book {
 
-	@Id
-	@GeneratedValue
-	private UUID id;
+	@EmbeddedId
+	private BookId id;
 
 	@Enumerated(EnumType.STRING)
 	private BookStatus status;
@@ -22,6 +23,7 @@ public class Book {
 	private LocalDate publicationDate;
 
 	public Book(CreateBookCommand command) {
+		id = BookId.generate();
 		status = AVAILABLE;
 		title = command.getTitle();
 		author = command.getAuthor();

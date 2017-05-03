@@ -1,10 +1,10 @@
 package pl.przygudzki.libms.application;
 
 import pl.przygudzki.libms.model.BookExporter;
+import pl.przygudzki.libms.model.BookId;
 import pl.przygudzki.libms.model.BookStatus;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class BookDtoBuilder implements BookExporter {
 
@@ -17,7 +17,7 @@ public class BookDtoBuilder implements BookExporter {
 	}
 
 	@Override
-	public void exportId(UUID id) {
+	public void exportId(BookId id) {
 		bookDto.setId(id);
 	}
 

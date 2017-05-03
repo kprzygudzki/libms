@@ -1,23 +1,23 @@
 package pl.przygudzki.libms.application;
 
+import pl.przygudzki.libms.model.BookId;
 import pl.przygudzki.libms.model.BookStatus;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class BookDto {
 
-	private UUID id;
+	private BookId id;
 	private BookStatus status;
 	private String title;
 	private String author;
 	private LocalDate publicationDate;
 
-	void setId(UUID id) {
+	void setId(BookId id) {
 		this.id = id;
 	}
 
-	public UUID getId() {
+	public BookId getId() {
 		return id;
 	}
 

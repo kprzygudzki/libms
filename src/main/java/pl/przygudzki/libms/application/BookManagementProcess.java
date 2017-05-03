@@ -1,13 +1,12 @@
 package pl.przygudzki.libms.application;
 
+import pl.przygudzki.libms.model.BookId;
 import pl.przygudzki.libms.model.CreateBookCommand;
-
-import java.util.UUID;
 
 public interface BookManagementProcess {
 
 	void add(CreateBookCommand command);
 
-	void remove(UUID bookId);
+	void remove(BookId bookId);
 
 }

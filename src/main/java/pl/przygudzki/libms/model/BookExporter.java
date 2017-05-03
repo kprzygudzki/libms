@@ -1,11 +1,10 @@
 package pl.przygudzki.libms.model;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public interface BookExporter {
 
-	void exportId(UUID id);
+	void exportId(BookId id);
 
 	void exportStatus(BookStatus status);
 
