@@ -2,6 +2,7 @@ package pl.przygudzki.libms.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static pl.przygudzki.libms.model.BookStatus.AVAILABLE;
 import static pl.przygudzki.libms.model.BookStatus.REMOVED;
@@ -11,7 +12,7 @@ public class Book {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private UUID id;
 
 	@Enumerated(EnumType.STRING)
 	private BookStatus status;
