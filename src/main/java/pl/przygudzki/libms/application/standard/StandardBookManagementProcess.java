@@ -6,6 +6,7 @@ import pl.przygudzki.libms.model.BookRepository;
 import pl.przygudzki.libms.model.CreateBookCommand;
 
 import javax.transaction.Transactional;
+import java.util.UUID;
 
 @Transactional
 public class StandardBookManagementProcess implements BookManagementProcess {
@@ -24,7 +25,7 @@ public class StandardBookManagementProcess implements BookManagementProcess {
 
 	@Override
 	public void remove(String bookId) {
-		Book book = bookRepository.get(bookId);
+		Book book = bookRepository.get(UUID.fromString(bookId));
 		book.remove();
 	}
 

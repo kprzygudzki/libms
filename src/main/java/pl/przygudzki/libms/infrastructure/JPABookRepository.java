@@ -5,6 +5,7 @@ import pl.przygudzki.libms.model.BookRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.UUID;
 
 public class JPABookRepository implements BookRepository {
 
@@ -17,7 +18,7 @@ public class JPABookRepository implements BookRepository {
 	}
 
 	@Override
-	public Book get(String bookId) {
+	public Book get(UUID bookId) {
 		Book book = entityManager.find(Book.class, bookId);
 		if (book == null)
 			throw new IllegalArgumentException(String.format("Book of id %s does not exist", bookId));
