@@ -19,17 +19,28 @@ public class JPABookCatalog implements BookCatalog {
 
 	@Override
 	public List<BookDto> listAll() {
+		List<Book> books = queryBooks();
+		return getBookDtos(books);
+	}
+
+	private List<Book> queryBooks() {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Book> query = builder.createQuery(Book.class);
 		query.from(Book.class);
-		List<Book> books = entityManager.createQuery(query).getResultList();
+		return entityManager.createQuery(query).getResultList();
+	}
+
+	private List<BookDto> getBookDtos(List<Book> books) {
 		List<BookDto> result = new LinkedList<>();
 		BookDtoBuilder bookDtoBuilder = new BookDtoBuilder();
-		for (Book book : books) {
-			book.export(bookDtoBuilder);
-			result.add(bookDtoBuilder.build());
-		}
+		for (Book book : books)
+			result.add(createBookDto(bookDtoBuilder, book));
 		return result;
+	}
+
+	private BookDto createBookDto(BookDtoBuilder bookDtoBuilder, Book book) {
+		book.export(bookDtoBuilder);
+		return bookDtoBuilder.build();
 	}
 
 }
