@@ -1,6 +1,8 @@
 package pl.przygudzki.libms.model;
 
 import org.junit.Test;
+import pl.przygudzki.libms.application.BookDto;
+import pl.przygudzki.libms.application.BookDtoBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.przygudzki.libms.model.BookStatus.AVAILABLE;
@@ -12,7 +14,7 @@ public class BookTest {
 	public void shouldSetStatusToAvailableOnCreation() {
 		CreateBookCommand command = new CreateBookCommand();
 		Book book = new Book(command);
-		assertThat(book.getStatus()).isEqualTo(AVAILABLE);
+		assertThat(createBookDto(book).getStatus()).isEqualTo(AVAILABLE);
 	}
 
 	@Test
@@ -20,7 +22,13 @@ public class BookTest {
 		CreateBookCommand command = new CreateBookCommand();
 		Book book = new Book(command);
 		book.remove();
-		assertThat(book.getStatus()).isEqualTo(REMOVED);
+		assertThat(createBookDto(book).getStatus()).isEqualTo(REMOVED);
+	}
+
+	private BookDto createBookDto(Book book) {
+		BookDtoBuilder builder = new BookDtoBuilder();
+		book.export(builder);
+		return builder.build();
 	}
 
 }

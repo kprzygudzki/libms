@@ -37,10 +37,6 @@ public class Book {
 		status = REMOVED;
 	}
 
-	BookStatus getStatus() {
-		return status;
-	}
-
 	public void export(BookExporter exporter) {
 		exporter.exportId(id);
 		exporter.exportStatus(status);
