@@ -1,5 +1,6 @@
 package pl.przygudzki.libms.application.standard;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.przygudzki.libms.application.BookCatalog;
 import pl.przygudzki.libms.application.BookManagementProcess;
+import pl.przygudzki.libms.application.DbCleaner;
 import pl.przygudzki.libms.model.CreateBookCommand;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +25,14 @@ public class BookManagementTest {
 	@Autowired
 	private BookCatalog catalog;
 
+	@Autowired
+	private DbCleaner cleaner;
+
+	@Before
+	public void setUp() throws Exception {
+		cleaner.clean();
+	}
+
 	@Test
 	public void shouldAddBook() {
 		int size = catalog.listAll().size();
@@ -35,8 +45,7 @@ public class BookManagementTest {
 	public void shouldSetStatusToAvailableOnCreation() {
 		CreateBookCommand command = new CreateBookCommand();
 		process.add(command);
-		String expected = AVAILABLE.toString();
-		assertThat(catalog.listAll().get(0).getStatus()).isEqualTo(expected);
+		assertThat(catalog.listAll().get(0).getStatus()).isEqualTo(AVAILABLE);
 	}
 
 	@Test
@@ -44,8 +53,7 @@ public class BookManagementTest {
 		CreateBookCommand command = new CreateBookCommand();
 		process.add(command);
 		process.remove(catalog.listAll().get(0).getId());
-		String expected = REMOVED.toString();
-		assertThat(catalog.listAll().get(0).getStatus()).isEqualTo(expected);
+		assertThat(catalog.listAll().get(0).getStatus()).isEqualTo(REMOVED);
 	}
 
 }
