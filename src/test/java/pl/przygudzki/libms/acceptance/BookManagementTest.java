@@ -1,4 +1,4 @@
-package pl.przygudzki.libms.application.standard;
+package pl.przygudzki.libms.acceptance;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.przygudzki.libms.application.BookCatalog;
 import pl.przygudzki.libms.application.BookManagementProcess;
-import pl.przygudzki.libms.application.DbCleaner;
+import pl.przygudzki.libms.DbCleaner;
 import pl.przygudzki.libms.model.CreateBookCommand;
 
 import static org.assertj.core.api.Assertions.assertThat;

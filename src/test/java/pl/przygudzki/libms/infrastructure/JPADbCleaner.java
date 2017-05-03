@@ -1,7 +1,7 @@
 package pl.przygudzki.libms.infrastructure;
 
 import org.springframework.stereotype.Component;
-import pl.przygudzki.libms.application.DbCleaner;
+import pl.przygudzki.libms.DbCleaner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

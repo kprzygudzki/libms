@@ -1,4 +1,4 @@
-package pl.przygudzki.libms.application;
+package pl.przygudzki.libms;
 
 public interface DbCleaner {
 
